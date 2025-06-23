@@ -24,25 +24,35 @@ class Elephant(Animal):
 
 class AnimalFactory(ABC):
     @abstractmethod
-    def create_animal(self) -> Animal:
+    def create_animal(self):
         pass
 
 
 class LionFactory(AnimalFactory):
-    def create_animal(self) -> Animal:
+    def create_animal(self):
         return Lion()
 
 
 class MonkeyFactory(AnimalFactory):
-    def create_animal(self) -> Animal:
+    def create_animal(self):
         return Monkey()
 
 
 class ElephantFactory(AnimalFactory):
-    def create_animal(self) -> Animal:
+    def create_animal(self):
         return Elephant()
 
 
-def animal_sound_demo(factory: AnimalFactory):
+def interact_with_animal(factory):
     animal = factory.create_animal()
-    print(f"Это животное издает звук: {animal.make_sound()}")
+    sound = animal.make_sound()
+    print(f"Звук: {sound}")
+
+
+lion_factory = LionFactory()
+monkey_factory = MonkeyFactory()
+elephant_factory = ElephantFactory()
+
+interact_with_animal(lion_factory)
+interact_with_animal(monkey_factory)
+interact_with_animal(elephant_factory)
